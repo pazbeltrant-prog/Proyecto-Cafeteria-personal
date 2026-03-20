@@ -1,6 +1,6 @@
 <script setup>
 defineProps(['cartCount']);
-defineEmits(['toggle-cart']);
+defineEmits(['toggle-cart', 'search']);
 </script>
 
 <template>
@@ -24,9 +24,22 @@ defineEmits(['toggle-cart']);
             <a class="nav-link" href="#reservas">Reservas</a>
           </li>
         </ul>
-        <div class="d-flex">
+        <div class="d-flex align-items-center gap-3">
+          <div class="search-container d-none d-md-block">
+            <div class="input-group">
+              <span class="input-group-text bg-transparent border-primary text-primary">
+                <i class="bi bi-search"></i>
+              </span>
+              <input 
+                type="text" 
+                class="form-control border-primary bg-dark text-white search-input" 
+                placeholder="Buscar productos..."
+                @input="$emit('search', $event.target.value)"
+              >
+            </div>
+          </div>
           <button class="btn btn-outline-primary position-relative" @click="$emit('toggle-cart')">
-            <i class="bi bi-cart3"></i> Carrito
+            <i class="bi bi-cart3"></i> <span class="d-none d-sm-inline">Carrito</span>
             <span v-if="cartCount > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
               {{ cartCount }}
             </span>
@@ -44,5 +57,16 @@ defineEmits(['toggle-cart']);
 }
 .navbar-brand {
   font-size: 1.5rem;
+}
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.search-input:focus {
+  background-color: #2b3035;
+  color: white;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+.search-container {
+  width: 250px;
 }
 </style>

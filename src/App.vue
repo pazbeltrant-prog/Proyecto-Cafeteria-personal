@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import Navbar from './components/Navbar.vue';
-import ProductCard from './components/ProductCard.vue';
+import ProductCarousel from './components/ProductCarousel.vue';
 import Cart from './components/Cart.vue';
 import Cafeteria from './components/Cafeteria.vue';
 import ReservationForm from './components/ReservationForm.vue';
@@ -45,6 +45,22 @@ const cartTotal = computed(() => {
   return cart.value.reduce((total, item) => total + (item.price * item.quantity), 0);
 });
 
+const searchQuery = ref('');
+
+const filteredProducts = computed(() => {
+  if (!searchQuery.value) return products;
+  
+  const query = searchQuery.value.toLowerCase().trim();
+  return products.filter(product => 
+    product.name.toLowerCase().includes(query) || 
+    product.category.toLowerCase().includes(query)
+  );
+});
+
+const handleSearch = (query) => {
+  searchQuery.value = query;
+};
+
 const checkout = () => {
   alert('¡Compra simulada con éxito! Gracias por tu preferencia.');
   cart.value = [];
@@ -54,7 +70,11 @@ const checkout = () => {
 
 <template>
   <div class="app-container">
-    <Navbar :cartCount="cartCount" @toggle-cart="isCartOpen = !isCartOpen" />
+    <Navbar 
+      :cartCount="cartCount" 
+      @toggle-cart="isCartOpen = !isCartOpen" 
+      @search="handleSearch"
+    />
     
     <main v-if="currentView === 'home'">
       <!-- Hero Section -->
@@ -67,14 +87,10 @@ const checkout = () => {
       </header>
 
       <!-- Products Section -->
-      <section id="productos" class="py-5 bg-light">
+      <section id="productos" class="py-5 bg-light overflow-hidden">
         <div class="container">
           <h2 class="text-center mb-5 section-title">Nuestros Productos</h2>
-          <div class="row g-4">
-            <div v-for="product in products" :key="product.id" class="col-12 col-md-6 col-lg-4">
-              <ProductCard :product="product" @add-to-cart="addToCart" />
-            </div>
-          </div>
+          <ProductCarousel :products="filteredProducts" @add-to-cart="addToCart" />
         </div>
       </section>
 

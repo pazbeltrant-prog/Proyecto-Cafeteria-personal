@@ -3,12 +3,13 @@
     <div class="container">
       <div class="row g-4">
         <div class="col-md-4">
-          <h4 class="fw-bold mb-4"><span class="text-primary">M&B</span> Store</h4>
-          <p class="text-muted">La tienda definitiva para amantes del manga, la lectura y los espacios creativos. Ven a visitarnos en nuestro rincón literario.</p>
+          <h4 class="fw-bold mb-4"><span class="text-primary">Biblioteca de Wan Shin Tong</span></h4>
+          <p class="text-white-50">La tienda definitiva para amantes del manga, la lectura y los espacios creativos. Ven a visitarnos en nuestro rincón literario.Y llevate no solo una historia sino una experiencia completa de aventuras</p>
           <div class="d-flex gap-3">
             <a href="#" class="btn btn-outline-light btn-sm rounded-circle"><i class="bi bi-facebook"></i></a>
             <a href="#" class="btn btn-outline-light btn-sm rounded-circle"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="btn btn-outline-light btn-sm rounded-circle"><i class="bi bi-tiktok"></i></a>
+            <a href="#" class="btn btn-outline-light btn-sm rounded-circle"><i class="bi bi-whatsapp"></i></a>
           </div>
         </div>
         <div class="col-md-4">
